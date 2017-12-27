@@ -2,8 +2,7 @@ import css from 'css';
 
 export default function() {
 
-    function analyseRules(rules, whitelist) {
-        var allowedProperties = new Set(whitelist);
+    function analyseRules(rules) {
         var result = new Set();
         rules.forEach(function(rule) {
             var type = rule.type;
@@ -33,14 +32,18 @@ export default function() {
                 if (type !== 'declaration') {
                     throw new Error('Unknown type \'' + type + '\' in ' + JSON.stringify(declaration));
                 }
-                var property = declaration.property;
-                if (allowedProperties.has(property)) {
-                    return;
-                }
                 result.add(declaration.property);
             });
         });
         return Array.from(result);
+    }
+
+    function removeAllowedProperties(properties, whitelist) {
+        var allowedProperties = new Set(whitelist);
+        var result = properties.filter(function(property) {
+            return !allowedProperties.has(property);
+        });
+        return result;
     }
 
     var self = {};
@@ -48,10 +51,11 @@ export default function() {
     self.process = function(path, input, whitelist) {
         var ast = css.parse(input, { source: path });
         var rules = ast.stylesheet.rules;
-        var properties = analyseRules(rules, whitelist);
+        var properties = analyseRules(rules);
+        var forbiddenProperties = removeAllowedProperties(properties, whitelist);
         return {
             path: path,
-            properties: properties
+            properties: forbiddenProperties
         };
     };
 
