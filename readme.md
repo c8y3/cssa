@@ -13,14 +13,15 @@ npm install cssa
 ## Usage
 
 ```
-cssa [options] <css_file>
+cssa [options] <css_file_paths>
 ```
 
 Options:
 
 ```
--w, --whitelist <json_file_path>  list of allowed properties
--h, --help                        output usage information
+-w, --whitelist <whitelist>  list of allowed properties
+-o, --output <output>        path to json output file
+-h, --help                   output usage information
 ```
 
 e.g.:
@@ -31,7 +32,7 @@ $ cssa hello_world.css
 
 ## Configuration file
 
-The configuration is simply the list of allowed properties. For instance:
+The whitelist is simply the list of allowed properties. For instance:
 
 ```
 ["display", "width", "margin"]
