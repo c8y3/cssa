@@ -50,5 +50,10 @@ describe('Analysis', function() {
         it('should not fail on keyframes', function() {
             subject.process('', '@keyframes slidein { }', []);
         });
+
+        it('should not report a property undefined on an inner comment', function() {
+            var report = subject.process('', 'p { /* */ }', []);
+            assert.equal(0, report.properties.length);
+        });
     });
 });

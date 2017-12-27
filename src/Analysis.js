@@ -2,7 +2,7 @@ import css from 'css';
 
 export default function() {
 
-    function collectForbiddenProperties(rules, whitelist) {
+    function analyseRules(rules, whitelist) {
         var allowedProperties = new Set(whitelist);
         var result = new Set();
         rules.forEach(function(rule) {
@@ -26,6 +26,13 @@ export default function() {
             }
             var declarations = rule.declarations;
             declarations.forEach(function(declaration) {
+                var type = declaration.type;
+                if (type === 'comment') {
+                    return;
+                }
+                if (type !== 'declaration') {
+                    throw new Error('Unknown type \'' + type + '\' in ' + JSON.stringify(declaration));
+                }
                 var property = declaration.property;
                 if (allowedProperties.has(property)) {
                     return;
@@ -41,7 +48,7 @@ export default function() {
     self.process = function(path, input, whitelist) {
         var ast = css.parse(input, { source: path });
         var rules = ast.stylesheet.rules;
-        var properties = collectForbiddenProperties(rules, whitelist);
+        var properties = analyseRules(rules, whitelist);
         return {
             path: path,
             properties: properties

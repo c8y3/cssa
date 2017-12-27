@@ -44,4 +44,10 @@ describe('cssa', function() {
         const output = fs.readFileSync(outputFile, { encoding: 'utf8' });
         assert.deepEqual({path: 'test/data/empty.css', properties: []}, JSON.parse(output));
     });
+
+    it('should not report a property undefined on inner comment', function() {
+        const output = cssa(['test/data/comment.css']);
+        assert.equal('Processed css file: \'test/data/comment.css\'\n', output);
+    });
 });
+
