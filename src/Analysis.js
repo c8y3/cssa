@@ -2,9 +2,28 @@ import css from 'css';
 
 export default function() {
 
+    // TODO try to avoid this function inside function thing!
+    //      Introduce a class which does the ast traversal
+    //      and a class which does the property collection
     function analyseRules(rules) {
         var result = new Set();
-        rules.forEach(function(rule) {
+
+        function traverseDeclaration(declaration) {
+            var type = declaration.type;
+            if (type === 'comment') {
+                return;
+            }
+            if (type !== 'declaration') {
+                throw new Error('Unknown type \'' + type + '\' in ' + JSON.stringify(declaration));
+            }
+            result.add(declaration.property);
+        }
+
+        function traverseDeclarations(declarations) {
+            declarations.forEach(traverseDeclaration);
+        }
+
+        function traverseRule(rule) {
             var type = rule.type;
             if (type === 'comment') {
                 return;
@@ -23,18 +42,15 @@ export default function() {
             if (type !== 'rule') {
                 throw new Error('Unknown type \'' + type + '\' in ' + JSON.stringify(rule));
             }
-            var declarations = rule.declarations;
-            declarations.forEach(function(declaration) {
-                var type = declaration.type;
-                if (type === 'comment') {
-                    return;
-                }
-                if (type !== 'declaration') {
-                    throw new Error('Unknown type \'' + type + '\' in ' + JSON.stringify(declaration));
-                }
-                result.add(declaration.property);
-            });
-        });
+            traverseDeclarations(rule.declarations);
+        }
+
+        function traverseRules(rules) {
+            rules.forEach(traverseRule);
+        }
+
+        traverseRules(rules);
+
         return Array.from(result);
     }
 
