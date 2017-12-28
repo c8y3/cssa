@@ -1,6 +1,8 @@
 // TODO move the code related to property accumulation out of the tree traversal
 export default function(ast) {
 
+    var ignoredTypes = new Set(['media', 'keyframes', 'font-face']);
+
     var result = new Set();
 
     function traverseDeclaration(declaration) {
@@ -26,16 +28,8 @@ export default function(ast) {
         if (type === 'charset') {
             return;
         }
-        if (type === 'media') {
-            console.log('@media not handled yet. Ignoring...');
-            return;
-        }
-        if (type === 'keyframes') {
-            console.log('@keyframes not handled yet. Ignoring...');
-            return;
-        }
-        if (type === 'font-face') {
-            console.log('@font-face not handled yet. Ignoring...');
+        if (ignoredTypes.has(type)) {
+            console.log('@' + type + ' not handled yet. Ignoring...');
             return;
         }
         if (type !== 'rule') {
