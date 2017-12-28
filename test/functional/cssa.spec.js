@@ -28,9 +28,14 @@ describe('cssa', function() {
         assert.equal('Processed css file: \'test/data/box-sizing.css\'\n', output);
     });
 
-    it('should accept keyframes', function() {
+    it('should accept @keyframes', function() {
         const stdout = cssa(['test/data/keyframes.css']);
         assert.equal('@keyframes not handled yet. Ignoring...\nProcessed css file: \'test/data/keyframes.css\'\n', stdout);
+    });
+
+    it('should accept @font-face', function() {
+        const stdout = cssa(['test/data/font-face.css']);
+        assert.equal('@font-face not handled yet. Ignoring...\nProcessed css file: \'test/data/font-face.css\'\n', stdout);
     });
 
     it('should accept several files', function() {

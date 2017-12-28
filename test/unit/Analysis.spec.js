@@ -26,11 +26,11 @@ describe('Analysis', function() {
             subject.process('', '/* a comment */', []);
         });
 
-        it('should not fail on charset', function() {
+        it('should not fail on @charset', function() {
             subject.process('', '@charset "UTF-8";', []);
         });
 
-        it('should ignore media', function() {
+        it('should ignore @media', function() {
             subject.process('', '@media print {}', []);
         });
 
@@ -47,8 +47,12 @@ describe('Analysis', function() {
             }
         });
 
-        it('should not fail on keyframes', function() {
+        it('should not fail on @keyframes', function() {
             subject.process('', '@keyframes slidein { }', []);
+        });
+
+        it('should not fail on @font-face', function() {
+            subject.process('', '@font-face {}', []);
         });
 
         it('should not report a property undefined on an inner comment', function() {

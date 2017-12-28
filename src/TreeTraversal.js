@@ -34,6 +34,10 @@ export default function(ast) {
             console.log('@keyframes not handled yet. Ignoring...');
             return;
         }
+        if (type === 'font-face') {
+            console.log('@font-face not handled yet. Ignoring...');
+            return;
+        }
         if (type !== 'rule') {
             throw new Error('Unknown type \'' + type + '\' in ' + JSON.stringify(rule));
         }
