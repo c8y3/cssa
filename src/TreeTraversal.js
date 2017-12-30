@@ -1,9 +1,11 @@
+import PropertyValues from '/PropertyValues';
+
 // TODO move the code related to property accumulation out of the tree traversal
 export default function(ast) {
 
     var ignoredTypes = new Set(['media', 'keyframes', 'font-face']);
 
-    var result = new Set();
+    var result = PropertyValues();
 
     function traverseDeclaration(declaration) {
         var type = declaration.type;
@@ -13,7 +15,7 @@ export default function(ast) {
         if (type !== 'declaration') {
             throw new Error('Unknown type \'' + type + '\' in ' + JSON.stringify(declaration));
         }
-        result.add(declaration.property);
+        result.add(declaration.property, declaration.value);
     }
 
     function traverseDeclarations(declarations) {
@@ -47,7 +49,7 @@ export default function(ast) {
     self.traverse = function() {
         var rules = ast.stylesheet.rules;
         traverseRules(rules);
-        return Array.from(result);
+        return result.toArray();
     };
 
     return self;
