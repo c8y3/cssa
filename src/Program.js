@@ -1,27 +1,8 @@
 import FileOperations from '/FileOperations';
 import ArgumentParser from '/ArgumentParser';
-import Analysis from '/Analysis';
+import FileAnalysis from '/FileAnalysis';
 import TextFormat from '/formats/TextFormat';
 import JSONFormat from '/formats/JSONFormat';
-
-const FileAnalysis = function(whitelist) {
-    const fileOperations = FileOperations();
-    const analysis = Analysis();
-
-    function processFile(path) {
-        const input = fileOperations.read(path);
-
-        return analysis.process(path, input, whitelist);
-    }
-
-    const self = {};
-
-    self.processFiles = function(paths) {
-		return paths.map(processFile);
-    };
-
-    return self;
-};
 
 export default function() {
     const fileOperations = FileOperations();
