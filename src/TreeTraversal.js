@@ -48,7 +48,7 @@ export default function(ast) {
     self.traverse = function() {
         var rules = ast.stylesheet.rules;
         traverseRules(rules);
-        return result.toArray();
+        return result;
     };
 
     return self;

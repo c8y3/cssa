@@ -8,23 +8,17 @@ export default function(whitelist) {
         return TreeTraversal(ast);
     }
 
-    function removeAllowedProperties(properties) {
-        var allowedProperties = new Set(whitelist);
-        var result = properties.filter(function(property) {
-            return !allowedProperties.has(property);
-        });
-        return result;
-    }
-
     var self = {};
 
     self.process = function(path, input) {
         var ast = parse(input, path);
-        var properties = ast.traverse();
-        var forbiddenProperties = removeAllowedProperties(properties);
+        var summary = ast.traverse();
+        
+        summary.remove(whitelist);
         return {
             path: path,
-            properties: forbiddenProperties
+            // TODO rename properties into Summary and put the summary directly
+            properties: summary.toArray()
         };
     };
 

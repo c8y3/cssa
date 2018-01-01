@@ -17,5 +17,12 @@ export default function() {
         return Object.keys(values);
     };
 
+    self.remove = function(allowedProperties) {
+        allowedProperties.forEach(function(property) {
+            delete(values[property]);
+        });
+    };
+
     return self;
 };
+
