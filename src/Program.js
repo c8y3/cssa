@@ -4,33 +4,46 @@ import Analysis from '/Analysis';
 import TextFormat from '/formats/TextFormat';
 import JSONFormat from '/formats/JSONFormat';
 
-export default function() {
+const FileOperations = function() {
 
-    var parser = ArgumentParser();
-    var analysis = Analysis();
+    const self = {};
 
-    function readFile(path) {
+    self.read = function(path) {
         return fs.readFileSync(path, { encoding: 'utf8' });
-    }
+    };
 
-    function readWhitelist(path) {
-        var result = [];
-        if (path !== undefined) {
-            result = JSON.parse(readFile(path));
-        }
-        return result;
-    }
+    return self;
+};
 
-    function analyseFile(whitelist, path) {
-        var input = readFile(path);
+const FileAnalysis = function(whitelist) {
+    const fileOperations = FileOperations();
+    const analysis = Analysis();
+
+    function processFile(path) {
+        const input = fileOperations.read(path);
 
         return analysis.process(path, input, whitelist);
     }
 
-    function analyseFiles(whitelist, paths) {
-		return paths.map(function(path) {
-            return analyseFile(whitelist, path);
-        });
+    const self = {};
+
+    self.processFiles = function(paths) {
+		return paths.map(processFile);
+    };
+
+    return self;
+};
+
+export default function() {
+    const fileOperations = FileOperations();
+    const parser = ArgumentParser();
+
+    function readWhitelist(path) {
+        var result = [];
+        if (path !== undefined) {
+            result = JSON.parse(fileOperations.read(path));
+        }
+        return result;
     }
 
     function selectOutputStream(path) {
@@ -53,9 +66,11 @@ export default function() {
         var options = parser.parse(argv);
         var outputStream = selectOutputStream(options.output);
         var prettier = selectFormat(options.output);
-
         var whitelist = readWhitelist(options.whitelist);
-        var reports = analyseFiles(whitelist, options.args);
+
+        var analysis = FileAnalysis(whitelist);
+
+        var reports = analysis.processFiles(options.args);
         var output = prettier.format(reports);
         outputStream.write(output);
     };
