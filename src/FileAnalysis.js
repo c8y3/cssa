@@ -15,12 +15,11 @@ export default function(whitelistPath) {
 
     const whitelist = readWhitelist();
 
-    const analysis = Analysis();
+    const analysis = Analysis(whitelist);
 
     function processFile(path) {
         const input = readFile(path);
-
-        return analysis.process(path, input, whitelist);
+        return analysis.process(path, input);
     }
 
     const self = {};
