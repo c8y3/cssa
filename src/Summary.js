@@ -17,6 +17,12 @@ export default function() {
         return Object.keys(values);
     };
 
+    self.iterate = function(visit) {
+        Object.keys(values).forEach(function(property) {
+            visit(property, Array.from(values[property]));
+        });
+    };
+
     self.remove = function(allowedProperties) {
         allowedProperties.forEach(function(property) {
             delete(values[property]);

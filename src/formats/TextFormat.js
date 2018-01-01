@@ -3,8 +3,8 @@ export default function() {
     function format(report) {
         var lines = [];
         lines.push('Processed css file: \'' + report.path + '\'');
-        report.summary.toArray().forEach(function(property) {
-            lines.push('Found property: \'' + property + '\'');
+        report.summary.iterate(function(property, values) {
+            lines.push('Found property: \'' + property + '\', with value: \'' + values[0] + '\'');            
         });
         return lines.join('\n');
     }

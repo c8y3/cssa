@@ -16,9 +16,9 @@ describe('TextFormat', function() {
 
         it('should output properties', function() {
             const summary = Summary();
-            summary.add(['box-sizing']);
-            var output = subject.format([{path: '', summary: summary}]);
-            assert.equal('Processed css file: \'\'\nFound property: \'box-sizing\'\n', output);
+            summary.add('box-sizing', 'border-box');
+            const output = subject.format([{path: '', summary: summary}]);
+            assert.equal('Processed css file: \'\'\nFound property: \'box-sizing\', with value: \'border-box\'\n', output);
         });
 
         it('should output a title', function() {
