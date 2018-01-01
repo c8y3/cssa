@@ -1,19 +1,8 @@
-import fs from 'fs';
+import FileOperations from '/FileOperations';
 import ArgumentParser from '/ArgumentParser';
 import Analysis from '/Analysis';
 import TextFormat from '/formats/TextFormat';
 import JSONFormat from '/formats/JSONFormat';
-
-const FileOperations = function() {
-
-    const self = {};
-
-    self.read = function(path) {
-        return fs.readFileSync(path, { encoding: 'utf8' });
-    };
-
-    return self;
-};
 
 const FileAnalysis = function(whitelist) {
     const fileOperations = FileOperations();
@@ -60,7 +49,7 @@ export default function() {
         return JSONFormat();
     }
 
-    var self = {};
+    const self = {};
 
     self.run = function(argv) {
         var options = parser.parse(argv);
