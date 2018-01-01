@@ -1,12 +1,24 @@
-import FileOperations from '/FileOperations';
+import fs from 'fs';
 import Analysis from '/Analysis';
 
-export default function(whitelist) {
-    const fileOperations = FileOperations();
+export default function(whitelistPath) {
+    function readFile(path) {
+        return fs.readFileSync(path, { encoding: 'utf8' });
+    };
+
+    function readWhitelist() {
+        if (whitelistPath === undefined) {
+            return [];
+        }
+        return JSON.parse(readFile(whitelistPath));
+    }
+
+    const whitelist = readWhitelist();
+
     const analysis = Analysis();
 
     function processFile(path) {
-        const input = fileOperations.read(path);
+        const input = readFile(path);
 
         return analysis.process(path, input, whitelist);
     }
