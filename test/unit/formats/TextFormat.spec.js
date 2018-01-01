@@ -21,6 +21,14 @@ describe('TextFormat', function() {
             assert.equal('Processed css file: \'\'\nFound property: \'box-sizing\', with value: \'border-box\'\n', output);
         });
 
+        it('should output all values associated to a property', function() {
+            const summary = Summary();
+            summary.add('position', 'absolute');
+            summary.add('position', 'relative');
+            const output = subject.format([{path: '', summary: summary}]);
+            assert.equal('Processed css file: \'\'\nFound property: \'position\', with values: \'absolute\', \'relative\'\n', output);
+        });
+
         it('should output a title', function() {
             const summary = Summary();
             var output = subject.format([{path: 'path', summary: summary}]);
