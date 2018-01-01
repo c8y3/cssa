@@ -1,11 +1,11 @@
-import PropertyValues from '/PropertyValues';
+import Summary from '/Summary';
 
 // TODO move the code related to property accumulation out of the tree traversal
 export default function(ast) {
 
     var ignoredTypes = new Set(['media', 'keyframes', 'font-face']);
 
-    var result = PropertyValues();
+    var result = Summary();
 
     function traverseDeclaration(declaration) {
         var type = declaration.type;
