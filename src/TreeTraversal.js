@@ -1,6 +1,5 @@
 import Summary from '/Summary';
 
-// TODO move the code related to property accumulation out of the tree traversal
 export default function(ast) {
 
     var ignoredTypes = new Set(['media', 'keyframes', 'font-face']);
