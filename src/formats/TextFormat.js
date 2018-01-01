@@ -3,7 +3,7 @@ export default function() {
     function format(report) {
         var lines = [];
         lines.push('Processed css file: \'' + report.path + '\'');
-        report.properties.forEach(function(property) {
+        report.summary.toArray().forEach(function(property) {
             lines.push('Found property: \'' + property + '\'');
         });
         return lines.join('\n');

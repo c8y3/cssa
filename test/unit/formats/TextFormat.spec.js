@@ -1,7 +1,8 @@
 import TextFormat from '/formats/TextFormat';
+import Summary from '/Summary';
 
 describe('TextFormat', function() {
-    var subject;
+    let subject;
 
     beforeEach(function() {
         subject = TextFormat();
@@ -9,25 +10,33 @@ describe('TextFormat', function() {
 
     describe('format', function() {
         it('should not fail', function() {
-            subject.format([{path: '', properties: []}]);
+            const summary = Summary();
+            subject.format([{path: '', summary: summary}]);
         });
 
         it('should output properties', function() {
-            var output = subject.format([{path: '', properties: ['box-sizing']}]);
+            const summary = Summary();
+            summary.add(['box-sizing']);
+            var output = subject.format([{path: '', summary: summary}]);
             assert.equal('Processed css file: \'\'\nFound property: \'box-sizing\'\n', output);
         });
 
         it('should output a title', function() {
-            var output = subject.format([{path: 'path', properties: []}]);
+            const summary = Summary();
+            var output = subject.format([{path: 'path', summary: summary}]);
             assert.equal('Processed css file: \'path\'\n', output);
         });
 
         it('should accept several reports', function() {
-            subject.format([{path: 'path1', properties: []}, {path: 'path2', properties: []}]);
+            const summary1 = Summary();
+            const summary2 = Summary();
+            subject.format([{path: 'path1', summary: summary1}, {path: 'path2', summary: summary2}]);
         });
 
         it('should insert a separator between each report', function() {
-            var output = subject.format([{path: 'path1', properties: []}, {path: 'path2', properties: []}]);
+            const summary1 = Summary();
+            const summary2 = Summary();
+            var output = subject.format([{path: 'path1', summary: summary1}, {path: 'path2', summary: summary2}]);
             assert.equal('Processed css file: \'path1\'\nProcessed css file: \'path2\'\n', output);
         });
     });

@@ -17,8 +17,7 @@ export default function(whitelist) {
         summary.remove(whitelist);
         return {
             path: path,
-            // TODO rename properties into Summary and put the summary directly
-            properties: summary.toArray()
+            summary: summary
         };
     };
 
