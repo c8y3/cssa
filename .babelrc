@@ -1,7 +1,12 @@
 {
   "env": {
     "development": {
-      "plugins": ["transform-es2015-block-scoping"]
+      "plugins": [
+        // note that the order plugins are defined, matters.
+        // Constant checking, should be run before variable scoping is removed.
+        "check-es2015-constants",
+        "transform-es2015-block-scoping"
+      ]
     },
     "test": {
       "plugins": [
