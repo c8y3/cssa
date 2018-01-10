@@ -9,8 +9,8 @@
   "scripts": {
     "prepublish": "npm run clean && npm run test && npm run build",
     "build": "rollup -c && chmod +x bin/cssa bin/cssa-legacy",
-    "postbuild": "mocha test/functional",
-    "test": "mocha test/unit",
+    "postbuild": "BABEL_ENV=test mocha test/functional",
+    "test": "BABEL_ENV=test mocha test/unit",
     "clean": "rm -rf bin/"
   },
   "keywords": [
