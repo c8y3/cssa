@@ -1,5 +1,13 @@
 {
   "env": {
+    "development": {
+      "presets": [
+        ["env", {
+          "modules": false
+        }]
+      ],
+      "plugins": ["external-helpers"]
+    },
     "test": {
       "plugins": [
         ["babel-root-slash-import", {

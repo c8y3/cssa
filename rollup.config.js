@@ -1,4 +1,5 @@
 import rootImport from 'rollup-plugin-root-import';
+import babel from 'rollup-plugin-babel';
 import path from 'path';
 
 var external = [
@@ -13,6 +14,9 @@ var plugins = [
 // an equivalent way to do this could be:
 //            useEntry: 'prepend',
         extensions: '.js'
+    }),
+    babel({
+        exclude: 'node_modules/**'
     })
 ];
 
