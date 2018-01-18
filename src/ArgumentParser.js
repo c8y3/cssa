@@ -1,7 +1,7 @@
 import Stargs from 'stargs';
 
 export default function() {
-    var optionsDescription = {
+    const optionsDescription = {
         description: 'Checks constraints on css files',
         args: 'css_file_paths',
         options: {
@@ -18,9 +18,9 @@ export default function() {
         }
     };
 
-    var parser = Stargs(optionsDescription);
+    const parser = Stargs(optionsDescription);
 
-    var self = {};
+    const self = {};
 
     self.parse = function(argv) {
         return parser.parse(argv);

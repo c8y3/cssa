@@ -4,15 +4,15 @@ import TreeTraversal from '/TreeTraversal';
 export default function(whitelist) {
 
     function parse(input, path) {
-        var ast = css.parse(input, { source: path });
+        const ast = css.parse(input, { source: path });
         return TreeTraversal(ast);
     }
 
-    var self = {};
+    const self = {};
 
     self.process = function(path, input) {
-        var ast = parse(input, path);
-        var summary = ast.traverse();
+        const ast = parse(input, path);
+        const summary = ast.traverse();
         
         summary.remove(whitelist);
         return {
