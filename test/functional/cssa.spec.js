@@ -19,8 +19,8 @@ describe('cssa', function() {
         return output.toString();
     }
 
-	it('should not fail without any argument', function() {
-		cssa([]);
+    it('should not fail without any argument', function() {
+        cssa([]);
     });
 
     it('should not output allowed properties', function() {
@@ -45,7 +45,7 @@ describe('cssa', function() {
 
     it('should write output into file when json output file is specified', function() {
         const outputFile = path.join(TEST_DIR, 'output.json');
-        const stdout = cssa(['test/data/empty.css', '--output', outputFile]);
+        cssa(['test/data/empty.css', '--output', outputFile]);
         const output = fs.readFileSync(outputFile, { encoding: 'utf8' });
         assert.deepEqual({path: 'test/data/empty.css', properties: []}, JSON.parse(output));
     });
