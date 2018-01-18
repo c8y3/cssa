@@ -7,10 +7,12 @@
     "bin/cssa-legacy"
   ],
   "scripts": {
-    "prepublish": "npm run clean && npm run test && npm run build",
+    "prepublish": "npm run clean && npm run check && npm run build",
     "build": "rollup -c && chmod +x bin/cssa bin/cssa-legacy",
     "postbuild": "BABEL_ENV=test mocha test/functional",
+    "lint": "eslint src test",
     "test": "BABEL_ENV=test mocha test/unit",
+    "check": "npm run lint && npm run test",
     "clean": "rm -rf bin/"
   },
   "keywords": [
