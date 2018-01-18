@@ -15,7 +15,7 @@ export default function() {
     }
 
     function format(report) {
-        var lines = [];
+        const lines = [];
         lines.push('Processed css file: ' + quote(report.path));
         report.summary.iterate(function(property, values) {
             lines.push(formatProperty(property, values));
@@ -23,10 +23,10 @@ export default function() {
         return lines.join('\n');
     }
 
-    var self = {};
+    const self = {};
 
     self.format = function(reports) {
-        var reportOutputs = reports.map(function(report) {
+        const reportOutputs = reports.map(function(report) {
             return format(report);
         });
         return reportOutputs.join('\n') + '\n';

@@ -8,11 +8,11 @@ export default function() {
     const self = {};
 
     self.run = function(argv) {
-        var options = parser.parse(argv);
-        var analysis = FileAnalysis(options.whitelist);
-        var writer = ReportWriter(options.output);
+        const options = parser.parse(argv);
+        const analysis = FileAnalysis(options.whitelist);
+        const writer = ReportWriter(options.output);
 
-        var reports = analysis.processFiles(options.args);
+        const reports = analysis.processFiles(options.args);
         writer.write(reports);
     };
 
