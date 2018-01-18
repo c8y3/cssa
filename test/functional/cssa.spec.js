@@ -39,7 +39,7 @@ describe('cssa', function() {
     });
 
     it('should accept several files', function() {
-        var stdout = cssa(['test/data/empty.css', 'test/data/box-sizing.css']);
+        const stdout = cssa(['test/data/empty.css', 'test/data/box-sizing.css']);
         assert.include(stdout, 'test/data/box-sizing.css');
     });
 

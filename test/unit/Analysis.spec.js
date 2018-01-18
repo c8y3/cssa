@@ -1,7 +1,7 @@
 import Analysis from '/Analysis';
 
 describe('Analysis', function() {
-    var subject;
+    let subject;
 
     beforeEach(function() {
         subject = Analysis([]);
@@ -13,12 +13,12 @@ describe('Analysis', function() {
         });
 
         it('should return an empty set', function() {
-            var report = subject.process('', '');
+            const report = subject.process('', '');
             assert.equal(0, report.summary.toArray().length);
         });
 
         it('should return a set with properties', function() {
-            var report = subject.process('', '* { box-sizing: border-box; }');
+            const report = subject.process('', '* { box-sizing: border-box; }');
             assert.equal('box-sizing', report.summary.toArray()[0]);
         });
 
@@ -36,7 +36,7 @@ describe('Analysis', function() {
 
         it('should not flag a property which is in the white list', function() {
             subject = Analysis(['box-sizing']);
-            var report = subject.process('', '* { box-sizing: border-box; }');
+            const report = subject.process('', '* { box-sizing: border-box; }');
             assert.equal(0, report.summary.toArray().length);
         });
 
@@ -57,7 +57,7 @@ describe('Analysis', function() {
         });
 
         it('should not report a property undefined on an inner comment', function() {
-            var report = subject.process('', 'p { /* */ }');
+            const report = subject.process('', 'p { /* */ }');
             assert.equal(0, report.summary.toArray().length);
         });
     });

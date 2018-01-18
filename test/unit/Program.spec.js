@@ -1,7 +1,7 @@
 import Program from '/Program';
 
 describe('Program', function() {
-    var subject;
+    let subject;
 
     beforeEach(function() {
         subject = Program();

@@ -31,7 +31,7 @@ describe('TextFormat', function() {
 
         it('should output a title', function() {
             const summary = Summary();
-            var output = subject.format([{path: 'path', summary: summary}]);
+            const output = subject.format([{path: 'path', summary: summary}]);
             assert.equal('Processed css file: \'path\'\n', output);
         });
 
@@ -44,7 +44,7 @@ describe('TextFormat', function() {
         it('should insert a separator between each report', function() {
             const summary1 = Summary();
             const summary2 = Summary();
-            var output = subject.format([{path: 'path1', summary: summary1}, {path: 'path2', summary: summary2}]);
+            const output = subject.format([{path: 'path1', summary: summary1}, {path: 'path2', summary: summary2}]);
             assert.equal('Processed css file: \'path1\'\nProcessed css file: \'path2\'\n', output);
         });
     });
