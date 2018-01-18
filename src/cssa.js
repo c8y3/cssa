@@ -1,6 +1,6 @@
 import Program from '/Program';
 
-var program = Program();
+const program = Program();
 try {
     program.run(process.argv);
 } catch (e) {

@@ -23,7 +23,7 @@ export default function(path) {
     const self = {};
 
     self.write = function(reports) {
-        var output = prettier.format(reports);
+        const output = prettier.format(reports);
         outputStream.write(output);
     };
 
