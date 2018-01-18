@@ -2,12 +2,12 @@ import Summary from '/Summary';
 
 export default function(ast) {
 
-    var ignoredTypes = new Set(['media', 'keyframes', 'font-face']);
+    const ignoredTypes = new Set(['media', 'keyframes', 'font-face']);
 
-    var result = Summary();
+    const result = Summary();
 
     function traverseDeclaration(declaration) {
-        var type = declaration.type;
+        const type = declaration.type;
         if (type === 'comment') {
             return;
         }
@@ -22,7 +22,7 @@ export default function(ast) {
     }
 
     function traverseRule(rule) {
-        var type = rule.type;
+        const type = rule.type;
         if (type === 'comment') {
             return;
         }
@@ -46,7 +46,7 @@ export default function(ast) {
     const self = {};
 
     self.traverse = function() {
-        var rules = ast.stylesheet.rules;
+        const rules = ast.stylesheet.rules;
         traverseRules(rules);
         return result;
     };
