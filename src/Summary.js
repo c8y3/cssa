@@ -1,11 +1,11 @@
 export default function() {
 
-    var values = {};
+    const values = {};
 
-    var self = {};
+    const self = {};
 
     self.add = function(property, value) {
-        var previous = values[property];
+        let previous = values[property];
         if (previous === undefined) {
             previous = new Set();
             values[property] = previous;
