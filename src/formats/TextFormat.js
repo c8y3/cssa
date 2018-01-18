@@ -5,7 +5,7 @@ export default function() {
     }
 
     function formatProperty(property, values) {
-        let message = 'Found property: ' + quote(property) + ', with value'
+        let message = 'Found property: ' + quote(property) + ', with value';
         if (values.length !== 1) {
             message += 's';
         }

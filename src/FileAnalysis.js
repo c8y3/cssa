@@ -25,7 +25,7 @@ export default function(whitelistPath) {
     const self = {};
 
     self.processFiles = function(paths) {
-		return paths.map(processFile);
+        return paths.map(processFile);
     };
 
     return self;
