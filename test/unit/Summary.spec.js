@@ -1,7 +1,6 @@
 import Summary from '/Summary';
 
 describe('Summary', function() {
-
     let subject;
 
     beforeEach(function() {
