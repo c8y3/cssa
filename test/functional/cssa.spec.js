@@ -1,11 +1,10 @@
 import path from 'path';
 import fs from 'fs-extra';
-import child_process from 'child_process';
+import childProcess from 'child_process';
 
 const TEST_DIR = 'test_output';
 
 describe('cssa', function() {
-
     beforeEach(function() {
         fs.ensureDirSync(TEST_DIR);
     });
@@ -15,7 +14,7 @@ describe('cssa', function() {
     });
 
     function cssa(args) {
-        const output = child_process.execFileSync('./bin/cssa', args);
+        const output = childProcess.execFileSync('./bin/cssa', args);
         return output.toString();
     }
 
@@ -46,7 +45,7 @@ describe('cssa', function() {
     it('should write output into file when json output file is specified', function() {
         const outputFile = path.join(TEST_DIR, 'output.json');
         cssa(['test/data/empty.css', '--output', outputFile]);
-        const output = fs.readFileSync(outputFile, { encoding: 'utf8' });
+        const output = fs.readFileSync(outputFile, {encoding: 'utf8'});
         assert.deepEqual({path: 'test/data/empty.css', properties: []}, JSON.parse(output));
     });
 
