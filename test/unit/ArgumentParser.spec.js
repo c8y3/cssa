@@ -2,18 +2,17 @@ import ArgumentParser from '/ArgumentParser';
 
 describe('ArgumentParser', function() {
     let subject;
-    const helpMessage = '\n\
-  Usage: programName [options] <css_file_paths>\n\
-\n\
-  Checks constraints on css files\n\
-\n\
-\n\
-  Options:\n\
-\n\
-    -w, --whitelist <whitelist>  path to json configuration file\n\
-    -o, --output <output>        path to json output file\n\
-    -h, --help                   output usage information\n\
-';
+    const helpMessage = '\n'
+                      + '  Usage: programName [options] <css_file_paths>\n'
+                      + '\n'
+                      + '  Checks constraints on css files\n'
+                      + '\n'
+                      + '\n'
+                      + '  Options:\n'
+                      + '\n'
+                      + '    -w, --whitelist <whitelist>  path to json configuration file\n'
+                      + '    -o, --output <output>        path to json output file\n'
+                      + '    -h, --help                   output usage information\n';
 
     beforeEach(function() {
         subject = ArgumentParser();
@@ -34,7 +33,7 @@ describe('ArgumentParser', function() {
             const options = subject.parse(['node', 'programName', '-w', 'whitelist.json', 'inputFile']);
             assert.equal('whitelist.json', options.whitelist);
         });
-        
+
         it('should accept long option --whitelist', function() {
             const options = subject.parse(['node', 'programName', '--whitelist', 'whitelist.json', 'inputFile']);
             assert.equal('whitelist.json', options.whitelist);
