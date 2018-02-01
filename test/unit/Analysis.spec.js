@@ -43,8 +43,8 @@ describe('Analysis', function() {
         it('should throw exception with file name on parse error', function() {
             try {
                 subject.process('path', '}');
-            } catch (e) {
-                assert.include(e.message, 'path');
+            } catch (parseError) {
+                assert.include(parseError.message, 'path');
             }
         });
 
