@@ -11,7 +11,7 @@ export default function(ast) {
             return;
         }
         if (type !== 'declaration') {
-            throw new Error('Unknown type \'${type}\' in ' + JSON.stringify(declaration));
+            throw new Error('Unknown type \'' + type + '\' in ' + JSON.stringify(declaration));
         }
         result.add(declaration.property, declaration.value);
     }
@@ -22,10 +22,7 @@ export default function(ast) {
 
     function traverseRule(rule) {
         const type = rule.type;
-        if (type === 'comment') {
-            return;
-        }
-        if (type === 'charset') {
+        if (type === 'comment' || type === 'charset') {
             return;
         }
         if (ignoredTypes.has(type)) {
