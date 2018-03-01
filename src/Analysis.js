@@ -3,7 +3,7 @@ import TreeTraversal from '/TreeTraversal';
 
 export default function(whitelist) {
     function parse(input, path) {
-        const ast = css.parse(input, {source: path});
+        const ast = css.parse(input, { source: path });
         return TreeTraversal(ast);
     }
 

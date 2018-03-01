@@ -45,8 +45,8 @@ describe('cssa', function() {
     it('should write output into file when json output file is specified', function() {
         const outputFile = path.join(TEST_DIR, 'output.json');
         cssa(['test/data/empty.css', '--output', outputFile]);
-        const output = fs.readFileSync(outputFile, {encoding: 'utf8'});
-        assert.deepEqual({path: 'test/data/empty.css', properties: []}, JSON.parse(output));
+        const output = fs.readFileSync(outputFile, { encoding: 'utf8' });
+        assert.deepEqual({ path: 'test/data/empty.css', properties: [] }, JSON.parse(output));
     });
 
     it('should not report a property undefined on inner comment', function() {
