@@ -24,7 +24,7 @@ export default function() {
 
     self.remove = function(allowedProperties) {
         allowedProperties.forEach(function(property) {
-            delete(values[property]);
+            delete values[property];
         });
     };
 
