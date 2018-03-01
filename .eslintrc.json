@@ -22,7 +22,6 @@
         "no-undefined": "off",
         "no-param-reassign": "off",
         "sort-keys": "off",
-        "no-warning-comments": "warn",
         "indent": [
             "error",
             4

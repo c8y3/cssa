@@ -13,7 +13,6 @@ describe('Summary', function() {
             let callCount = 0;
             let argument1;
             let argument2;
-            // TODO use sinon here
             subject.iterate(function(property, values) {
                 callCount++;
                 argument1 = property;
