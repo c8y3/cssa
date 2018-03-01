@@ -1,5 +1,4 @@
 export default function() {
-
     const self = {};
 
     self.format = function(reports) {
