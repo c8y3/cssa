@@ -1,7 +1,6 @@
 import Summary from '/Summary';
 
 export default function(ast) {
-
     const ignoredTypes = new Set(['media', 'keyframes', 'font-face']);
 
     const result = Summary();
