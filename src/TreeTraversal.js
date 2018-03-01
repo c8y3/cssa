@@ -11,7 +11,7 @@ export default function(ast) {
             return;
         }
         if (type !== 'declaration') {
-            throw new Error('Unknown type \'' + type + '\' in ' + JSON.stringify(declaration));
+            throw new Error('Unknown type \'${type}\' in ' + JSON.stringify(declaration));
         }
         result.add(declaration.property, declaration.value);
     }
