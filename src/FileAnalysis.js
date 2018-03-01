@@ -3,7 +3,7 @@ import Analysis from '/Analysis';
 
 export default function(whitelistPath) {
     function readFile(path) {
-        return fs.readFileSync(path, { encoding: 'utf8' });
+        return fs.readFileSync(path, {encoding: 'utf8'});
     };
 
     function readWhitelist() {
