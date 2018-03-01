@@ -1,4 +1,5 @@
 import Summary from '/Summary';
+import sinon from 'sinon';
 
 describe('Summary', function() {
     let subject;
@@ -10,17 +11,10 @@ describe('Summary', function() {
     describe('iterate', function() {
         it('should iterate through all properties', function() {
             subject.add('box-sizing', 'border-box');
-            let callCount = 0;
-            let argument1;
-            let argument2;
-            subject.iterate(function(property, values) {
-                callCount++;
-                argument1 = property;
-                argument2 = values;
-            });
-            assert.equal(1, callCount);
-            assert.equal('box-sizing', argument1);
-            assert.deepEqual(['border-box'], argument2);
+            const callback = sinon.spy();
+            subject.iterate(callback);
+            assert(callback.calledOnce);
+            assert(callback.calledWith('box-sizing', ['border-box']));
         });
     });
 });
