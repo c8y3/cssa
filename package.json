@@ -41,7 +41,8 @@
     "rollup": "^0.52.1",
     "rollup-plugin-babel": "^3.0.3",
     "rollup-plugin-root-import": "^0.2.2",
-    "sinon": "^4.4.2"
+    "sinon": "^4.4.2",
+    "sinon-register": "https://github.com/c8y3/sinon-register"
   },
   "dependencies": {
     "css": "^2.2.1",
