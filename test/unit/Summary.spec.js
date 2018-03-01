@@ -1,5 +1,4 @@
 import Summary from '/Summary';
-import sinon from 'sinon';
 
 describe('Summary', function() {
     let subject;
